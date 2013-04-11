@@ -18,7 +18,7 @@ from sbmakerspace_app.forms import *
 
 from mailsnake import MailSnake
 
-from sbmakerspace.vars import mckey
+from vars import mckey
 
 global ms
 ms = MailSnake(mckey)
