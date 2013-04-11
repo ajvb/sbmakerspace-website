@@ -1,0 +1,4 @@
+#Variables that can not be public.
+
+#Mailchimp API key
+mckey = ''
