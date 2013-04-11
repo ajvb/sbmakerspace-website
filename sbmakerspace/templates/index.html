@@ -7,11 +7,25 @@
 
 {% block content %}
 <div class="row">
-<div class="span8 offset2 center pad-top5 pad-bottom5">
-<h2>Thanks for using Django Project Builder!</h2>
-<br />
-<p>Feel free to contribute improvements on <a href="https://github.com/prototypemagic/django-projectbuilder">our GitHub page</a></p>
+    <div class="span12">
+        <h1>SBMakerspace</h1>
+        <br />
+    </div>
 </div>
+<!---->
+<div class="row">
+    <div class="span4 offset1">
+        <form action="." class="form mailling_list" method="post">
+            {{ mailing_list_form.as_ul }}
+            <input class="btn btn-large btn-primary" name="mailinglist" type="submit" value="Sign Up" />
+        </form>
+    </div>
+    <div class="span4">
+        <form action="." class="form mailling_list" method="post">
+            {{ contact_us_form.as_ul }}
+            <input class="btn btn-large btn-primary" name="contactus" type="submit" value="Sign Up" />
+        </form>
+    </div>
 </div>
 {% endblock %}
 
