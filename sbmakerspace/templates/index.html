@@ -18,12 +18,14 @@
         <form action="." class="form mailling_list" method="post">
             {{ mailing_list_form.as_ul }}
             <input class="btn btn-large btn-primary" name="mailinglist" type="submit" value="Sign Up" />
+            {% csrf_token %}
         </form>
     </div>
     <div class="span4">
         <form action="." class="form mailling_list" method="post">
             {{ contact_us_form.as_ul }}
             <input class="btn btn-large btn-primary" name="contactus" type="submit" value="Sign Up" />
+            {% csrf_token %}
         </form>
     </div>
 </div>
