@@ -38,7 +38,7 @@ def index(request):
                 messages.success(request, "Thank you for signing up!\nWe will contact you with more information soon!")
                 ms.listSubscribe( #Subscribe the user to our mailing list
                     id = list_to_use['id'],
-                    email_address = form.cleaned_data['email'],
+                    email_address = mailing_list_form.cleaned_data['email'],
                     update_existing = True,
                     double_optin = False,
                 )
@@ -59,7 +59,7 @@ def index(request):
             #
             mailing_list_form = MailingForm()
         #
-        return redirect('landingpage')
+        return redirect('index')
     else:
         mailing_list_form = MailingForm()
         contact_us_form = ContactForm()
