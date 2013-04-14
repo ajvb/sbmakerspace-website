@@ -30,9 +30,9 @@ def index(request):
             mailing_list_form = MailingForm(request.POST)
             if mailing_list_form.is_valid(): # All validation rules pass
                 ms_lists = ms.lists()['data'] #Get all of the MailChimp Lists
-                list_to_us = ms_lists[0] #TODO: Delete this, uncomment below.
+                list_to_use = ms_lists[0] #TODO: Delete this, uncomment below.
 #            for list in lists:
-#                if list['name'] == 'SyndicateProClosedBetaSignup'
+#                if list['name'] == 'SBMakerspaceMailingList'
 #                    list_to_use = list
                 # Process the data in form.cleaned_data
                 messages.success(request, "Thank you for signing up!\nWe will contact you with more information soon!")
