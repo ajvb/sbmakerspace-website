@@ -42,25 +42,7 @@ def index(request):
                     update_existing = True,
                     double_optin = False,
                 )
-            #
-            contact_us_form = ContactForm()
-        #If a user submitted to the Contact Us Form
-        elif 'contactus' in request.POST:
-            contact_us_form = ContactForm(request.POST) # A form bound to the POST data
-            if contact_us_form.is_valid(): # All validation rules pass
-                # Process the data in form.cleaned_data
-                messages.success(request, "Thank you for contacting us!")
-                emails = [settings.EMAIL_HOST_USER, 'avb.wkyhu@gmail.com']
-                content = contact_us_form.cleaned_data['message'] + "\n\n" +\
-                          "From: %s" % form.cleaned_data['name'] +\
-                          "\n\n" + "Their Email: %s" % form.cleaned_data['email']
-                send_mail('[SBMakerspace] :' + contact_us_form.cleaned_data['subject'],
-                           content, settings.EMAIL_HOST_USER, emails, fail_silently=True)
-            #
-            mailing_list_form = MailingForm()
-        #
         return redirect('index')
     else:
         mailing_list_form = MailingForm()
-        contact_us_form = ContactForm()
     return render(request, "index.html", locals())
