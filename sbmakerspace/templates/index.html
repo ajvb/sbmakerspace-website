@@ -7,19 +7,23 @@
 
 {% block content %}
 <div class="row">
-    <div class="span12 center">
+    <div class="span12 offset2">
+    <div class="hero-unit">
         <h1 id="header">SB Makerspace</h1>
-        <br />
+        <p>Lorem ipsum</p>
+        <p>
+            <form action="." class="form mailling_list" method="post">
+                {{ mailing_list_form.as_ul }}
+                <input class="btn btn-large btn-primary" name="mailinglist" type="submit" value="Sign Up" />
+                {% csrf_token %}
+            </form>
+            </p>
+    </div>
     </div>
 </div>
 <!---->
 <div class="row">
     <div class="span4 offset3">
-        <form action="." class="form mailling_list" method="post">
-            {{ mailing_list_form.as_ul }}
-            <input class="btn btn-large btn-primary" name="mailinglist" type="submit" value="Sign Up" />
-            {% csrf_token %}
-        </form>
     </div>
     <div class="span4">
         <form action="." class="form mailling_list" method="post">
