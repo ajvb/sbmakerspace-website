@@ -148,7 +148,8 @@ padding-bottom:10px;
 }
 
 /* Boostrap Overrides */
-
+body {
+}
 .hero-unit {
     padding-top: 20px;
     padding-bottom: 20px;

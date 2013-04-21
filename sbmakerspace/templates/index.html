@@ -7,22 +7,41 @@
 
 {% block content %}
 <div class="row">
-    <div class="span12 offset2">
+    <div class="span10 center">
     <div class="hero-unit">
         <h1 id="header">SB Makerspace</h1>
         <p>Lorem ipsum</p>
-        <p>
-            <form action="." class="form mailling_list" method="post">
-                {{ mailing_list_form.as_ul }}
-                <input class="btn btn-large btn-primary" name="mailinglist" type="submit" value="Sign Up" />
-                {% csrf_token %}
-            </form>
-            </p>
     </div>
     </div>
 </div>
 <!---->
 <div class="row">
+    <div class="span6 offset1">
+        <h2>Interested in Classes?</h2>
+        <p>We will be offering tons of free technology classes, such as</p>
+        <p>lorem ipsum</p>
+            <form action="." class="form mailling_list" method="post">
+                {{ mailing_list_form.as_ul }}
+                <input class="btn btn-large btn-primary" name="mailinglist" type="submit" value="Sign Up" />
+                {% csrf_token %}
+            </form>
+    </div>
+    <div class="span7">
+        <h2>Interested in Volunteering?</h2>
+        <p>lorem ipsum</p>
+            <form action="." class="form mailling_list" method="post">
+                {{ mailing_list_form.as_ul }}
+                <input class="btn btn-large btn-primary" name="mailinglist" type="submit" value="Sign Up" />
+                {% csrf_token %}
+            </form>
+    </div>
+</div>
+<!----><hr/>
+<div class="row">
+    <div class="span12 offset1">
+        <h1>Upcoming Events</h1>
+        <h3>SB Makerspace Panel</h3>
+    </div>
 </div>
 {% endblock %}
 
