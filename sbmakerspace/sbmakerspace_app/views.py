@@ -26,23 +26,42 @@ ms = MailSnake(mckey)
 def index(request):
     if request.method == 'POST': # If the form has been submitted...
         #If a user submitted to the Mailing List Form
-        if 'mailinglist' in request.POST:
-            mailing_list_form = MailingForm(request.POST)
-            if mailing_list_form.is_valid(): # All validation rules pass
+        if 'volunteer' in request.POST:
+            volunteer_mailing_list_form = MailingForm(request.POST, prefix="volunteer")
+            if volunteer_mailing_list_form.is_valid(): # All validation rules pass
                 ms_lists = ms.lists()['data'] #Get all of the MailChimp Lists
-                list_to_use = ms_lists[0] #TODO: Delete this, uncomment below.
-#            for list in lists:
-#                if list['name'] == 'SBMakerspaceMailingList'
-#                    list_to_use = list
+                for list in ms_lists:
+                    if 'Volunteer' in list['name']:
+                        list_to_use = list
+
                 # Process the data in form.cleaned_data
                 messages.success(request, "Thank you for signing up!\nWe will contact you with more information soon!")
                 ms.listSubscribe( #Subscribe the user to our mailing list
                     id = list_to_use['id'],
-                    email_address = mailing_list_form.cleaned_data['email'],
+                    email_address = volunteer_mailing_list_form.cleaned_data['email'],
                     update_existing = True,
                     double_optin = False,
                 )
+            classes_mailing_list_form = MailingForm(prefix="classes")
+        elif 'classes' in request.POST:
+            classes_mailing_list_form = MailingForm(request.POST, prefix="classes")
+            if classes_mailing_list_form.is_valid(): # All validation rules pass
+                ms_lists = ms.lists()['data'] #Get all of the MailChimp Lists
+                for list in ms_lists:
+                    if 'Classes' in list['name']:
+                        list_to_use = list
+
+                # Process the data in form.cleaned_data
+                messages.success(request, "Thank you for signing up!\nWe will contact you with more information soon!")
+                ms.listSubscribe( #Subscribe the user to our mailing list
+                    id = list_to_use['id'],
+                    email_address = classes_mailing_list_form.cleaned_data['email'],
+                    update_existing = True,
+                    double_optin = False,
+                )
+            volunteer_mailing_list_form = MailingForm(prefix="volunteer")
         return redirect('index')
-    else:
-        mailing_list_form = MailingForm()
+    else: #At GET request, do the below.
+        volunteer_mailing_list_form = MailingForm(prefix="volunteer")
+        classes_mailing_list_form = MailingForm(prefix="classes")
     return render(request, "index.html", locals())
