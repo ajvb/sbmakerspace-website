@@ -8,9 +8,10 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('', ''),
+    ('AJ', 'aj@ajvb.me'),
+    ('Jim', 'jpmcgaw@gmail.com'),
+    ('Team OpenWeb', 'team@openwebengineering.com'),
 )
-
 MANAGERS = ADMINS
 
 DATABASES = {
@@ -23,19 +24,6 @@ DATABASES = {
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
-
-from vars import MY_USER, MY_PASSWORD
-
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = MY_USER
-EMAIL_HOST_PASSWORD = MY_PASSWORD
-EMAIL_PORT = 587
-
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
-
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -135,15 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
-    ####
-    # 'sentry',
-    # 'djcelery',
-    # 'mptt',
-    # 'raven.contrib.django',
     'south',
     'sbmakerspace_app',
 
@@ -190,8 +170,3 @@ except ImportError:
     except ImportError:
         import sys
         sys.stderr.write( "local settings not available\n" )
-else:
-    try:
-        INSTALLED_APPS += LOCAL_INSTALLED_APPS
-    except NameError:
-        pass
