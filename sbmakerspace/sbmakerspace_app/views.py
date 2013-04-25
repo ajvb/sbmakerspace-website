@@ -13,7 +13,6 @@ from django.template import loader, RequestContext
 from django.views.decorators.csrf import csrf_exempt
 
 from sbmakerspace_app.models import *
-from sbmakerspace_app.model_forms import *
 from sbmakerspace_app.forms import *
 
 from mailsnake import MailSnake
