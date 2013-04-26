@@ -17,8 +17,13 @@
 <div class="row">
     <div class="span6">
         <h3>Interested in Classes?</h3>
-        <p>We will be offering tons of free technology classes, such as</p>
-        <!---->
+        <p>We will be offering tons of free technology classes to the community. Initial classes will be geared towards teaching kids and teenagers important technical skills. After that, we will be providing classes sololy based upon what kind of requests we get. Want to stay in the loop on classes we're offering? Enter your email below and sign up for our SB Makerspace Classes mailing list.</p>
+        <form action="." class="form mailling_list" method="post">{% csrf_token %}
+                {{ classes_mailing_list_form.as_ul }}
+                <input class="btn btn-large btn-primary" name="classes" type="submit" value="Sign Up" />
+            </form>
+            <!---->
+            <hr/>
         <p>
         <ul id="class_schedule">
             <li>
@@ -47,10 +52,6 @@
         </ul>
         </p>
         <!---->
-            <form action="." class="form mailling_list" method="post">{% csrf_token %}
-                {{ classes_mailing_list_form.as_ul }}
-                <input class="btn btn-large btn-primary" name="classes" type="submit" value="Sign Up" />
-            </form>
     </div>
     <div class="span6">
         <h3>Interested in Volunteering?</h3>
