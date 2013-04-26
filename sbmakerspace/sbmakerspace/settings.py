@@ -14,14 +14,16 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
+from vars import SQL_USER, SQL_PASS, SQL_NAME, SECRET
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME':  'sbmakerspace',                      # Or path to database file if using sqlite3.
-        'USER': 'sbmakerspace_user',                      # Not used with sqlite3.
-        'PASSWORD': 'kqeUPkCkLF5IH9xZ2qiRHhioiK4znU',                  # Not used with sqlite3.
-        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': SQL_NAME,
+        'USER': SQL_USER,
+        'PASSWORD': SQL_PASS,
+        'HOST': 'localhost',
+        'PORT': '', 
     }
 }
 
@@ -85,7 +87,8 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '([~k/{L$B0V9r.1zd+y{xx"R#q$3-DV2hmQEjPOQg#H="b\$Bb'
+#SECRET_KEY = '([~k/{L$B0V9r.1zd+y{xx"R#q$3-DV2hmQEjPOQg#H="b\$Bb'
+SECRET_KEY = SECRET
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
