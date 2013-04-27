@@ -8,19 +8,22 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('', ''),
+    ('AJ', 'aj@ajvb.me'),
+    ('Jim', 'jpmcgaw@gmail.com'),
+    ('Team OpenWeb', 'team@openwebengineering.com'),
 )
-
 MANAGERS = ADMINS
+
+from vars import SQL_USER, SQL_PASS, SQL_NAME, SECRET
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME':  'sbmakerspace',                      # Or path to database file if using sqlite3.
-        'USER': 'sbmakerspace_user',                      # Not used with sqlite3.
-        'PASSWORD': 'kqeUPkCkLF5IH9xZ2qiRHhioiK4znU',                  # Not used with sqlite3.
-        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': SQL_NAME,
+        'USER': SQL_USER,
+        'PASSWORD': SQL_PASS,
+        'HOST': 'localhost',
+        'PORT': '', 
     }
 }
 
@@ -97,7 +100,8 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '([~k/{L$B0V9r.1zd+y{xx"R#q$3-DV2hmQEjPOQg#H="b\$Bb'
+#SECRET_KEY = '([~k/{L$B0V9r.1zd+y{xx"R#q$3-DV2hmQEjPOQg#H="b\$Bb'
+SECRET_KEY = SECRET
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -135,15 +139,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
-    ####
-    # 'sentry',
-    # 'djcelery',
-    # 'mptt',
-    # 'raven.contrib.django',
     'south',
     'sbmakerspace_app',
 
@@ -190,8 +186,3 @@ except ImportError:
     except ImportError:
         import sys
         sys.stderr.write( "local settings not available\n" )
-else:
-    try:
-        INSTALLED_APPS += LOCAL_INSTALLED_APPS
-    except NameError:
-        pass

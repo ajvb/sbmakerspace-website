@@ -13,12 +13,11 @@ from django.template import loader, RequestContext
 from django.views.decorators.csrf import csrf_exempt
 
 from sbmakerspace_app.models import *
-from sbmakerspace_app.model_forms import *
 from sbmakerspace_app.forms import *
 
 from mailsnake import MailSnake
 
-from vars import mckey
+from sbmakerspace.vars import mckey
 
 global ms
 ms = MailSnake(mckey)
@@ -26,41 +25,42 @@ ms = MailSnake(mckey)
 def index(request):
     if request.method == 'POST': # If the form has been submitted...
         #If a user submitted to the Mailing List Form
-        if 'mailinglist' in request.POST:
-            mailing_list_form = MailingForm(request.POST)
-            if mailing_list_form.is_valid(): # All validation rules pass
+        if 'volunteer' in request.POST:
+            volunteer_mailing_list_form = MailingForm(request.POST, prefix="volunteer")
+            if volunteer_mailing_list_form.is_valid(): # All validation rules pass
                 ms_lists = ms.lists()['data'] #Get all of the MailChimp Lists
-                list_to_us = ms_lists[0] #TODO: Delete this, uncomment below.
-#            for list in lists:
-#                if list['name'] == 'SyndicateProClosedBetaSignup'
-#                    list_to_use = list
+                for list in ms_lists:
+                    if 'Volunteer' in list['name']:
+                        list_to_use = list
+
                 # Process the data in form.cleaned_data
                 messages.success(request, "Thank you for signing up!\nWe will contact you with more information soon!")
                 ms.listSubscribe( #Subscribe the user to our mailing list
                     id = list_to_use['id'],
-                    email_address = form.cleaned_data['email'],
+                    email_address = volunteer_mailing_list_form.cleaned_data['email'],
                     update_existing = True,
                     double_optin = False,
                 )
-            #
-            contact_us_form = ContactForm()
-        #If a user submitted to the Contact Us Form
-        elif 'contactus' in request.POST:
-            contact_us_form = ContactForm(request.POST) # A form bound to the POST data
-            if contact_us_form.is_valid(): # All validation rules pass
+            classes_mailing_list_form = MailingForm(prefix="classes")
+        elif 'classes' in request.POST:
+            classes_mailing_list_form = MailingForm(request.POST, prefix="classes")
+            if classes_mailing_list_form.is_valid(): # All validation rules pass
+                ms_lists = ms.lists()['data'] #Get all of the MailChimp Lists
+                for list in ms_lists:
+                    if 'Classes' in list['name']:
+                        list_to_use = list
+
                 # Process the data in form.cleaned_data
-                messages.success(request, "Thank you for contacting us!")
-                emails = [settings.EMAIL_HOST_USER, 'avb.wkyhu@gmail.com']
-                content = contact_us_form.cleaned_data['message'] + "\n\n" +\
-                          "From: %s" % form.cleaned_data['name'] +\
-                          "\n\n" + "Their Email: %s" % form.cleaned_data['email']
-                send_mail('[SBMakerspace] :' + contact_us_form.cleaned_data['subject'],
-                           content, settings.EMAIL_HOST_USER, emails, fail_silently=True)
-            #
-            mailing_list_form = MailingForm()
-        #
-        return redirect('landingpage')
-    else:
-        mailing_list_form = MailingForm()
-        contact_us_form = ContactForm()
+                messages.success(request, "Thank you for signing up!\nWe will contact you with more information soon!")
+                ms.listSubscribe( #Subscribe the user to our mailing list
+                    id = list_to_use['id'],
+                    email_address = classes_mailing_list_form.cleaned_data['email'],
+                    update_existing = True,
+                    double_optin = False,
+                )
+            volunteer_mailing_list_form = MailingForm(prefix="volunteer")
+        return redirect('index')
+    else: #At GET request, do the below.
+        volunteer_mailing_list_form = MailingForm(prefix="volunteer")
+        classes_mailing_list_form = MailingForm(prefix="classes")
     return render(request, "index.html", locals())

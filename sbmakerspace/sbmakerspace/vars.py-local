@@ -2,3 +2,11 @@
 
 #Mailchimp API key
 mckey = ''
+
+#Secret Key for Django
+SECRET = ''
+
+#Postgres (SQL) Username and Password
+SQL_USER = ''
+SQL_PASS = ''
+SQL_NAME = ''

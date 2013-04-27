@@ -1,30 +1,85 @@
 {% extends "base.html" %}
 <!-- Copy and Paste this for every html file. -->
-{% block title %}{% endblock %}
+{% block title %}Home{% endblock %}
 {% block meta_description %}{% endblock %}
 
 {% block extra_head %}{% endblock %}
 
 {% block content %}
 <div class="row">
-    <div class="span12 center">
-        <h1 id="header">SBMakerspace</h1>
-        <br />
+    <div class="span10 center">
+    <div class="hero-unit">
+        <h1 id="header">SB Makerspace</h1>
+    </div>
     </div>
 </div>
 <!---->
 <div class="row">
-    <div class="span4 offset1">
-        <form action="." class="form mailling_list" method="post">
-            {{ mailing_list_form.as_ul }}
-            <input class="btn btn-large btn-primary" name="mailinglist" type="submit" value="Sign Up" />
-        </form>
+    <div class="span6">
+        <h3>Interested in Classes?</h3>
+        <p>We will be offering tons of free technology classes to the community. Initial classes will be geared towards teaching kids and teenagers important technical skills. After that, we will be providing classes sololy based upon what kind of requests we get. Want to stay in the loop on classes we're offering? Enter your email below and sign up for our SB Makerspace Classes mailing list.</p>
+        <form action="." class="form mailling_list" method="post">{% csrf_token %}
+                {{ classes_mailing_list_form.as_ul }}
+                <input class="btn btn-large btn-primary" name="classes" type="submit" value="Sign Up" />
+            </form>
+            <!---->
+            <hr/>
+        <p>
+        <ul id="class_schedule">
+            <li>
+            <a href="http://ca.evanced.info/sbpl/lib/eventsignup.asp?ID=4952&rts=&disptype=&ret=eventcalendar.asp&pointer=&returnToSearch=&num=0&ad=&dt=mo&mo=4/1/2013&df=calendar&EventType=ALL&Lib=ALL&AgeGroup=ALL&LangType=0&WindowMode=&noheader=&lad=&pub=1&nopub=&page=&pgdisp="><h4>Beginning Programming for Kids</h4></a>
+            <p> Learn some entry-level programming in this series of three classes. Local programmers will teach kids how to use the program Scratch. Kids will learn using library computers. Registration will be limited to 10 kids, and kids should plan to attend each of the classes, as each class will progress from the previous week. Parents are asked to remain at the library during the class, and are welcomed to stay in the room during the class.<br/> Ages: 8-12</p>
+                <b>Starting April 27th, Ends May 11th</b>
+                <br/>
+                <i>Saturday's from 10:30am - 11:30am</i>
+            </li>
+            <li>
+                <h4>Programming for Teens</h4>
+                <p>Programming class for teenagers using Python. 
+                A good introduction for teenagers interested in computer science and
+                programming. Taught by local Santa Barbara Python professionals.
+                <br/>Ages: 13-18</p>
+                <b>Starting July Xth</b>
+                <br/>
+                <i>Friday's from 4pm-5:30pm</i>
+            </li>
+            <li>
+            <h4>Open Makerspace</h4>
+            <p>Open Makerspace time is a great period to get questions answered and
+            to get involved.</p>
+            <i>Monday's from Xpm-Xpm</i>
+            </li>
+        </ul>
+        </p>
+        <!---->
     </div>
-    <div class="span4">
-        <form action="." class="form mailling_list" method="post">
-            {{ contact_us_form.as_ul }}
-            <input class="btn btn-large btn-primary" name="contactus" type="submit" value="Sign Up" />
-        </form>
+    <div class="span6">
+        <h3>Interested in Volunteering?</h3>
+        <p>The Santa Barbara Public Library System is partnering with 
+        Santa Barbara Makerspace to offer classes and open nights to 
+        provide opportunities for makers and developers of all ages.  
+        If you would like to teach, mentor, donate, or sponsor tools, 
+        equipment and/or supplies to support the Library in this effort, 
+        please tell us your email.  
+        We will send you updates to tell you how you can help.
+        </p>
+            <form action="." class="form mailling_list" method="post">{% csrf_token %}
+                {{ volunteer_mailing_list_form.as_ul }}
+                <input class="btn btn-large btn-primary" name="volunteer" type="submit" value="Sign Up" />
+            </form>
+    </div>
+</div>
+<!----><hr/>
+<div class="row">
+    <div class="span12">
+        <h1>Upcoming Events</h1>
+        <h2>SB Makerspace Panel</h2>
+        <p>A panel discussion introducing the Library makerspace 
+        program to the public is scheduled for 
+        <strong>Tuesday May 21st</strong>, starting at <strong>6:30pm</strong>
+        in <strong>Faulkner Gallery</strong>.  A display of maker 
+        tools and maker-made objects will be in an adjacent room.
+        <p>
     </div>
 </div>
 {% endblock %}
