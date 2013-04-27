@@ -1,3 +1,9 @@
 *.log
 *.pot
 *.pyc
+sbmakerspace/bin/
+sbmakerspace/build/
+sbmakerspace/include/
+sbmakerspace/lib/
+.DS_Store
+sbmakerspace/.Python
