@@ -82,6 +82,25 @@
         <p>
     </div>
 </div>
+{% if show_dialog %}
+<div class="row">
+  <div id="dialog" title="Thank You!">
+    <p>Thank you for signing up! We will contact you with more information soon!</p>
+    <p>Share with your friends:</p>
+    <p><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://sbmakerspace.org" data-text="I just signed up with the @SBMakerspace. Learn more about local makers:" data-size="large" data-count="none">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p>
+  </div>
+</div>
+{% endif %}
 {% endblock %}
 
-{% block javascript %}{% endblock %}
+{% block javascript %}
+<script type="text/javascript">
+  $(function(){
+    $("#dialog").dialog({
+      modal : true,
+      minWidth : 500
+    });
+  });
+</script>
+{% endblock %}

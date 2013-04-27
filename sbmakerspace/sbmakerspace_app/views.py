@@ -23,11 +23,13 @@ global ms
 ms = MailSnake(mckey)
 
 def index(request):
+    show_dialog = False
     if request.method == 'POST': # If the form has been submitted...
         #If a user submitted to the Mailing List Form
         if 'volunteer' in request.POST:
             volunteer_mailing_list_form = MailingForm(request.POST, prefix="volunteer")
             if volunteer_mailing_list_form.is_valid(): # All validation rules pass
+                show_dialog = True
                 ms_lists = ms.lists()['data'] #Get all of the MailChimp Lists
                 for list in ms_lists:
                     if 'Volunteer' in list['name']:
@@ -45,6 +47,7 @@ def index(request):
         elif 'classes' in request.POST:
             classes_mailing_list_form = MailingForm(request.POST, prefix="classes")
             if classes_mailing_list_form.is_valid(): # All validation rules pass
+                show_dialog = True
                 ms_lists = ms.lists()['data'] #Get all of the MailChimp Lists
                 for list in ms_lists:
                     if 'Classes' in list['name']:
